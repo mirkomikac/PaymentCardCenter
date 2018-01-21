@@ -28,6 +28,28 @@ public class Banka implements Serializable{
 
 	@Column
 	private String email;
+	
+	@Column
+	private String swiftCode;
+	
+	@Column
+	private String url;
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getSwiftCode() {
+		return swiftCode;
+	}
+
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
+	}
 
 	public Long getId() {
 		return id;
