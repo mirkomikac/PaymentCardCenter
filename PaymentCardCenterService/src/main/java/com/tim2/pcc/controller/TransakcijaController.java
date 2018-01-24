@@ -25,15 +25,16 @@ public class TransakcijaController {
 	@PostMapping("/proslediZahtev")
 	@ResponseBody
 	public Transakcija proslediZahtev(@RequestBody Transakcija transakcija){
+		System.out.println("STIGLOLO");
 		String url = bankaServiceImpl.findBankBySwiftKod(transakcija.getPan());
-		return restTemplate.postForObject(url + "/placanje/proveriZahtev", transakcija, Transakcija.class);
+		return restTemplate.postForObject(url + "/api/placanje/proveriZahtev", transakcija, Transakcija.class);
 	}
 	
-	@PostMapping()
+	@PostMapping("/proslediOdgovor")
 	@ResponseBody
 	public RezultatTransakcije proslediOdgovor(@RequestBody RezultatTransakcije rezultatTransakcije){
-		//mican generise ACQ_ORDER_ID = SWIFT_KOD + ID, preko swift koda dolazim do acquirer banke
-		return restTemplate.postForObject("url", rezultatTransakcije, RezultatTransakcije.class);
+		String url = bankaServiceImpl.findBankBySwiftKod(rezultatTransakcije.getAcquirerSwiftCode());
+		return restTemplate.postForObject(url + "/api/placanje/zabeleziPodatke", rezultatTransakcije, RezultatTransakcije.class);
 	}
 	
 }

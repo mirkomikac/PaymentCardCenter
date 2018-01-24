@@ -13,12 +13,14 @@ public class Transakcija {
 	protected String acquirerOrderId;
 	protected String acquirerTimestamp;
 	
+	protected String acquirerSwiftCode;
+		
 	public Transakcija(){
 		
 	}
 	
 	public Transakcija(String pan, String sigurnosniKod, String nazivVlasnikaKartice, Date datumVazenja, String iznos,
-			String acquirerOrderId, String acquirerTimestamp) {
+			String acquirerOrderId, String acquirerTimestamp, String acquirerSwiftCode) {
 		super();
 		this.pan = pan;
 		this.sigurnosniKod = sigurnosniKod;
@@ -27,7 +29,17 @@ public class Transakcija {
 		this.iznos = iznos;
 		this.acquirerOrderId = acquirerOrderId;
 		this.acquirerTimestamp = acquirerTimestamp;
+		this.acquirerSwiftCode = acquirerSwiftCode;
 	}
+	
+	public String getAcquirerSwiftCode() {
+		return acquirerSwiftCode;
+	}
+
+	public void setAcquirerSwiftCode(String acquirerSwiftCode) {
+		this.acquirerSwiftCode = acquirerSwiftCode;
+	}
+
 	public String getPan() {
 		return pan;
 	}
