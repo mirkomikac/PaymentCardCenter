@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Transakcija {
 	
+	private Long id;
+	
 	protected String pan;
 	protected String sigurnosniKod;
 	protected String nazivVlasnikaKartice;
@@ -32,6 +34,14 @@ public class Transakcija {
 		this.acquirerSwiftCode = acquirerSwiftCode;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getAcquirerSwiftCode() {
 		return acquirerSwiftCode;
 	}

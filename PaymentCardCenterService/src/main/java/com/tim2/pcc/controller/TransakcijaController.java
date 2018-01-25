@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,18 +22,16 @@ public class TransakcijaController {
 	private BankaServiceImpl bankaServiceImpl;
 	
 	@PostMapping("/proslediZahtev")
-	@ResponseBody
-	public Transakcija proslediZahtev(@RequestBody Transakcija transakcija){
-		System.out.println("STIGLOLO");
+	public void proslediZahtev(@RequestBody Transakcija transakcija){
+		System.out.println("[PCC] PROSLEDIZAHTEV USAO");
 		String url = bankaServiceImpl.findBankBySwiftKod(transakcija.getPan());
-		return restTemplate.postForObject(url + "/api/placanje/proveriZahtev", transakcija, Transakcija.class);
+		restTemplate.postForObject(url + "/api/placanje/proveriZahtev", transakcija, Void.class);
 	}
 	
 	@PostMapping("/proslediOdgovor")
-	@ResponseBody
-	public RezultatTransakcije proslediOdgovor(@RequestBody RezultatTransakcije rezultatTransakcije){
+	public void proslediOdgovor(@RequestBody RezultatTransakcije rezultatTransakcije){
 		String url = bankaServiceImpl.findBankBySwiftKod(rezultatTransakcije.getAcquirerSwiftCode());
-		return restTemplate.postForObject(url + "/api/placanje/zabeleziPodatke", rezultatTransakcije, RezultatTransakcije.class);
+		restTemplate.postForObject(url + "/api/placanje/zabeleziPodatke", rezultatTransakcije, Void.class);
 	}
 	
 }
