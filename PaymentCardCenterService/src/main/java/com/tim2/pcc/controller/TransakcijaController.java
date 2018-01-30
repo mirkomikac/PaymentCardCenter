@@ -31,7 +31,7 @@ public class TransakcijaController {
 	@PostMapping("/proslediOdgovor")
 	public void proslediOdgovor(@RequestBody RezultatTransakcije rezultatTransakcije){
 		String url = bankaServiceImpl.findBankBySwiftKod(rezultatTransakcije.getAcquirerSwiftCode());
-		restTemplate.postForObject(url + "/api/placanje/zabeleziPodatke", rezultatTransakcije, Void.class);
+		restTemplate.postForObject(url + "/api/placanje/zabeleziPodatke", rezultatTransakcije, Boolean.class);
 	}
 	
 }
